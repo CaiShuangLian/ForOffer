@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @FileName:
  * @Date:Created in  2021/7/24 9:16
  * @Version:
- * @Description:快排 参考书籍大话数据结构
+ * @Description:快排 参考书籍 《大话数据结构》
  */
 
 public class quickSort {
