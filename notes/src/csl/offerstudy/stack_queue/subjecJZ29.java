@@ -128,10 +128,57 @@ public class subjecJZ29 {
     public static ArrayList<Integer> GetLeastNumbers_Solution_QuickSorting(int[] input, int k){
 
         ArrayList<Integer> arrayList=new ArrayList<>();
+        for (int ele:input){
+            arrayList.add(ele);
+        }
+        int low=0;
+        int high=arrayList.size()-1;
+        //快排
+        Quick(arrayList,low,high);
 
+        //只取K个数
+        for(int i = -1; i< high-k; i++){
+            arrayList.remove(k);
+        }
         return arrayList;
+    }
+
+    static void Quick(ArrayList<Integer> arrayList, int low, int high){
+        int pKey;
+        if(low<high){
+            pKey=partition(arrayList,low,high);
+            Quick(arrayList,low,pKey-1);
+            Quick(arrayList,pKey+1,high);
+        }
+    }
+
+    static int partition(ArrayList<Integer> arrayList, int low, int high){
+        int p=arrayList.get(low);
+        System.out.println("当前枢轴的值为："+p);
+        while (low<high){
+            while (low<high &&arrayList.get(high)>=p)
+                high--;
+            swap(arrayList,low,high);
+            while (low<high&&arrayList.get(low)<=p)
+                low++;
+            swap(arrayList,low,high);
+        }
+        return low;
+    }
+
+    /**
+     * 交换数组对应下标的两个数
+     * @param arrayList
+     * @param low
+     * @param high
+     */
+    static void swap(ArrayList<Integer> arrayList, int low, int high){
+        int temp=arrayList.get(low);
+        arrayList.set(low,arrayList.get(high));
+        arrayList.set(high,temp);
 
     }
+
 
 
     /**
@@ -139,9 +186,9 @@ public class subjecJZ29 {
      */
     public static void test1(){
         int []input={4,5,1,6,2,7,2,8};
-        int k=3;
+        int k=8;
         ArrayList<Integer> arrayList;
-        arrayList=GetLeastNumbers_Solution_Heap(input,k);
+        arrayList=GetLeastNumbers_Solution_QuickSorting(input,k);
         for(int ele:arrayList){
             System.out.println("最小的k个数是："+ele);
         }
