@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 
 public class subjectJZ41 {
+
     public static ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
 
         ArrayList<ArrayList<Integer>> arrayList=new ArrayList<>();
