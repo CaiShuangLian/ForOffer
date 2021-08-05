@@ -53,17 +53,27 @@ public class subjectJZ3 {
      * @return
      */
     public static ArrayList<Integer> printListFromTailToHead_Method02(ListNode listNode){
-
+        //反转链表
+        //1.设置一个辅助headNode
+        //2.headNode指向最新节点
         ArrayList<Integer> arrayList=new ArrayList<>();
-
-
-
-
-
+        ListNode headNode=new ListNode(-100);
+        //遍历listNode
         while (listNode!=null){
-//            stack.push(listNode.val);
-            arrayList.add(listNode.val);
-            listNode=listNode.next;
+            //temp暂存最新节点的下一节点
+            ListNode temp = listNode.next;
+            //先将最新节点的下一节点指向原上一节点
+            listNode.next = headNode.next;
+            //headNode指向最新节点
+            headNode.next = listNode;
+            //更新当前链表
+            listNode = temp;
+        }
+        headNode=headNode.next;
+
+        while (headNode!=null){
+            arrayList.add(headNode.val);
+            headNode=headNode.next;
         }
 
         return arrayList;
@@ -101,7 +111,7 @@ public class subjectJZ3 {
         listNode1.next=listNode2;
         listNode2.next=listNode3;
 
-        ArrayList<Integer> arrayList=printListFromTailToHead(listNode1);
+        ArrayList<Integer> arrayList=printListFromTailToHead_Method02(listNode1);
         for(int ele:arrayList)
             System.out.println(ele);
 
